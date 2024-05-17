@@ -22,10 +22,10 @@ FutureOr<Response> onRequest(RequestContext context, String id) async {
   }
 }
 
-FutureOr<Response> _get(RequestContext context, String id) {
+FutureOr<Response> _get(RequestContext context, String id) async {
   final messageRepository = context.read<MessageRepository>();
   try {
-    final messages = messageRepository.fetchMessages(id);
+    final messages = await messageRepository.fetchMessages(id);
     return Response.json(body: {'messages': messages});
   } catch (err) {
     return Response.json(

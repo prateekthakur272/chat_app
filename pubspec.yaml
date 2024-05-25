@@ -36,6 +36,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   envied: ^0.5.4+1
+  triton_extensions:
+    git: https://github.com/prateekthakur272/triton_extensions.git
+  models:
+    path: packages/models
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:chat_app/main.dart';
 import 'package:chat_app/src/screens/chat_screen/chat_screen.dart';
 import 'package:chat_app/src/shared/strings.dart';
 import 'package:chat_app/src/shared/themes.dart';
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
-      home: const ChatScreen(),
+      home: ChatScreen(chatRoom: chatRoom,),
       theme: themeLight,
     );
   }

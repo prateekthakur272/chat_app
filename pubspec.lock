@@ -379,6 +379,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  models:
+    dependency: "direct main"
+    description:
+      path: "packages/models"
+      relative: true
+    source: path
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:
@@ -464,6 +471,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  sprintf:
+    dependency: transitive
+    description:
+      name: sprintf
+      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   stack_trace:
     dependency: transitive
     description:
@@ -520,6 +535,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  triton_extensions:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "8b4fefac258b4391ec283ed1b3702f73ab2bdceb"
+      url: "https://github.com/prateekthakur272/triton_extensions.git"
+    source: git
+    version: "0.0.1"
   typed_data:
     dependency: transitive
     description:
@@ -528,6 +552,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "814e9e88f21a176ae1359149021870e87f7cddaf633ab678a5d2b0bff7fd1ba8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.0"
   vector_math:
     dependency: transitive
     description:
@@ -578,3 +610,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.3.0 <4.0.0"
+  flutter: ">=1.17.0"

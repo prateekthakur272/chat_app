@@ -1,7 +1,7 @@
 import 'package:supabase/supabase.dart';
 
 abstract class _BaseMessageRepository {
-  void createMessage();
+  Future<Map<String, dynamic>> createMessage(Map<String, dynamic> data);
   Future<List<Map<String, dynamic>>> fetchMessages(String roomId);
 }
 
@@ -13,7 +13,13 @@ class MessageRepository extends _BaseMessageRepository {
   final SupabaseClient _db;
 
   @override
-  void createMessage() {}
+  Future<Map<String, dynamic>> createMessage(Map<String, dynamic> data) async {
+    try {
+      return await _db.from('messages').insert(data).select().single();
+    } catch (err) {
+      throw Exception(err);
+    }
+  }
 
   @override
   Future<List<Map<String, dynamic>>> fetchMessages(String roomId) async {

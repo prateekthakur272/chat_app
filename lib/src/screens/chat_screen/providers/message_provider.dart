@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chat_app/main.dart';
 import 'package:chat_app/src/repositories/message_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -19,10 +21,13 @@ class MessageProvider extends ChangeNotifier {
   void listen(String chatRoomId) {
     _repository.connect();
     _repository.subscribeToMessageUpdates((message) {
-      final newMessage = Message.fromJson(message);
-      _messages.add(newMessage);
+      final newMessage = Message.fromJson(message['data']);
+      if (newMessage.chatRoomId == chatRoom.id) {
+        _messages.add(newMessage);
+        _messages.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+        notifyListeners();
+      }
     });
-    notifyListeners();
   }
 
   void send(String content, chatRoomId) async {
@@ -32,7 +37,6 @@ class MessageProvider extends ChangeNotifier {
         senderUserId: userId1,
         receiverUserId: userId2,
         createdAt: DateTime.now());
-    _messages.add(message);
     await _repository.createMessage(message);
     notifyListeners();
   }

@@ -22,9 +22,8 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    final messageProvider = Provider.of<MessageProvider>(context, listen: false);
-    messageProvider.update(chatRoom.id);
-    messageProvider.listen(chatRoom.id);
+    Provider.of<MessageProvider>(context, listen: false).update(chatRoom.id);
+    Provider.of<MessageProvider>(context, listen: false).listen(chatRoom.id);
   }
 
   @override
@@ -69,7 +68,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           MessageBubble(message: ref.messages[index]));
                 }
               )),
-          const MessageBar()
+          MessageBar(chatRoomId: chatRoom.id,)
         ],
       ),
     );

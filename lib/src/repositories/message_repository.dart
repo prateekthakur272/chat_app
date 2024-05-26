@@ -33,7 +33,7 @@ class MessageRepository {
   }
 
   Future<void> createMessage(Message message) async {
-    var payload = {'event': MessageEvents.create, 'data': message.toJson()};
+    var payload = {'event': 'message.create', 'data': message.toJson()};
     _webSocketClient.send(jsonEncode(payload));
   }
 
@@ -44,7 +44,7 @@ class MessageRepository {
       channel.stream.listen(
         (event) {
           Map<String, dynamic> message = jsonDecode(event);
-          if (message['event'] == MessageEvents.create) {
+          if (message['event'] == 'message.create') {
             messageController.add(message['data']);
           }
         },
@@ -62,7 +62,7 @@ class MessageRepository {
     void Function(Map<String, dynamic>) onMessageReceived,
   ) {
     messageSubscription = _webSocketClient.channel!.stream.listen((event) {
-      onMessageReceived(event);
+      onMessageReceived(jsonDecode(event));
     });
     return messageSubscription!;
   }

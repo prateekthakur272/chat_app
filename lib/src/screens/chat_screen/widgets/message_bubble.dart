@@ -47,14 +47,14 @@ class MessageBubble extends StatelessWidget {
                                 : context.colorScheme.onPrimary,
                             fontSize: 16),
                       ),
-                      Text(
-                        message.createdAt.toString(),
-                        style: TextStyle(
-                            color: user == message.senderUserId
-                                ? context.colorScheme.onSurface
-                                : context.colorScheme.onPrimary,
-                            fontSize: 10),
-                      ),
+                      // Text(
+                      //   message.createdAt.toString(),
+                      //   style: TextStyle(
+                      //       color: user == message.senderUserId
+                      //           ? context.colorScheme.onSurface
+                      //           : context.colorScheme.onPrimary,
+                      //       fontSize: 10),
+                      // ),
                     ],
                   )),
               if(user == message.senderUserId)

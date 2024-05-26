@@ -2,6 +2,7 @@ import 'package:chat_app/src/app.dart';
 import 'package:chat_app/src/repositories/message_repository.dart';
 import 'package:chat_app/src/screens/chat_screen/providers/message_provider.dart';
 import 'package:chat_app/src/services/api_client.dart';
+import 'package:chat_app/src/services/websocket_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:models/models.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +10,9 @@ import 'package:provider/provider.dart';
 final apiClient = ApiClient(tokenProvider: () async {
   return '';
 });
+final webSocketClient = WebSocketClient();
 
-final messageRepository = MessageRepository(client: apiClient);
+final messageRepository = MessageRepository(client: apiClient, webSocketClient: webSocketClient);
 final messageProvider = MessageProvider(messageRepository);
 
 void main() {
@@ -18,11 +20,11 @@ void main() {
       create: (BuildContext context) => messageProvider, child: const App()));
 }
 
-const userId1 = '33f771e2-311b-4d4f-9b14-d1e1c59936d3';
-const userId2 = '94a6b01e-319e-494e-b454-98f22ab0d109';
+const userId1 = '70e75772-3290-465c-8ced-fba3b4c101a6';
+const userId2 = '7be1d04b-bd40-4fcb-8601-93d01183c8cf';
 
 final chatRoom = ChatRoom(
-  id: '8d162274-6cb8-4776-815a-8e721ebfb76d',
+  id: 'ea4a3041-af7a-41a6-ac2c-1e545e2cfd8f',
   participants: const [
     User(
       id: userId1,

@@ -22,7 +22,9 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<MessageProvider>(context, listen: false).update(chatRoom.id);
+    final messageProvider = Provider.of<MessageProvider>(context, listen: false);
+    messageProvider.update(chatRoom.id);
+    messageProvider.listen(chatRoom.id);
   }
 
   @override

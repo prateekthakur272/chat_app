@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:chat_app/main.dart';
 import 'package:chat_app/src/repositories/message_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -19,17 +17,27 @@ class MessageProvider extends ChangeNotifier {
   }
 
   void listen(String chatRoomId) {
+    _repository.connect();
+    _repository.subscribeToMessageUpdates((message) {
+      final newMessage = Message.fromJson(message);
+      _messages.add(newMessage);
+    });
     notifyListeners();
   }
 
-  void send(String content, chatRoomId) {
+  void send(String content, chatRoomId) async {
     final message = Message(
       content: content,
         chatRoomId: chatRoomId,
         senderUserId: userId1,
         receiverUserId: userId2,
         createdAt: DateTime.now());
-    messages.add(message);
+    _messages.add(message);
+    await _repository.createMessage(message);
     notifyListeners();
   }
+}
+
+enum MessageEvents{
+  create,
 }
